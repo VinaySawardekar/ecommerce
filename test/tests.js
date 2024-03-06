@@ -244,18 +244,18 @@ describe("E-COMMERCE API Routes", () => {
     expect(res.body.message).to.equal("Internal Server Error");
   });
 
-  it("DELETE /user : It should delete user by id", async function () {
-    const res = await chai.request(app).delete(`/api/user/${userId}`);
+  it("DELETE /order : It should delete order by id", async function () {
+    const res = await chai.request(app).delete(`/api/order/${orderId}`);
     expect(res.statusCode).to.equal(200);
     expect(res.body.status).to.equal("success");
-    expect(res.body.message).to.equal("User Deleted Successfully!");
+    expect(res.body.message).to.equal("Order Deleted Successfully!");
   });
 
-  it("DELETE /user : It should failed to delete user by id", async function () {
-    const res = await chai.request(app).delete(`/api/user/88`);
+  it("DELETE /order : It should failed to delete order by id", async function () {
+    const res = await chai.request(app).delete(`/api/order/88`);
     expect(res.statusCode).to.equal(400);
     expect(res.body.status).to.equal("failure");
-    expect(res.body.message).to.equal("User Not Found!");
+    expect(res.body.message).to.equal("Order Not Found!");
   });
 
   it("DELETE /product : It should delete product by id", async function () {
@@ -272,17 +272,17 @@ describe("E-COMMERCE API Routes", () => {
     expect(res.body.message).to.equal("Product Not Found!");
   });
 
-  it("DELETE /order : It should delete order by id", async function () {
-    const res = await chai.request(app).delete(`/api/order/${orderId}`);
+  it("DELETE /user : It should delete user by id", async function () {
+    const res = await chai.request(app).delete(`/api/user/${userId}`);
     expect(res.statusCode).to.equal(200);
     expect(res.body.status).to.equal("success");
-    expect(res.body.message).to.equal("Order Deleted Successfully!");
+    expect(res.body.message).to.equal("User Deleted Successfully!");
   });
 
-  it("DELETE /order : It should failed to delete order by id", async function () {
-    const res = await chai.request(app).delete(`/api/order/88`);
+  it("DELETE /user : It should failed to delete user by id", async function () {
+    const res = await chai.request(app).delete(`/api/user/88`);
     expect(res.statusCode).to.equal(400);
     expect(res.body.status).to.equal("failure");
-    expect(res.body.message).to.equal("Order Not Found!");
+    expect(res.body.message).to.equal("User Not Found!");
   });
 });
