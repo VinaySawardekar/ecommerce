@@ -53,15 +53,15 @@ jobs:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - name: Upload coverage report
         uses: actions/upload-artifact@v3
         with:
           name: coverage-report
-          path: ../../coverage/lcov.info
-
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+          path: coverage/lcov.info
 
       - name: SonarCloud scan
         uses: sonarsource/sonarcloud-github-action@master
