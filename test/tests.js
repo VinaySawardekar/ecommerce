@@ -11,9 +11,10 @@ setupDB();
 
 chai.use(chaiHttp);
 
-describe("USER API Routes", () => {
+describe("E-COMMERCE API Routes", () => {
   it("GET /user : It should get all users", async function () {
     const res = await chai.request(app).get("/api/user/");
+    console.log(res.body);
     expect(res.statusCode).to.equal(200);
     expect(res.body.status).to.equal("success");
     expect(res.body.message).to.equal("User Details fetched Successfully!");
@@ -98,22 +99,6 @@ describe("USER API Routes", () => {
     expect(res.body.message).to.equal("Internal Server Error");
   });
 
-  it("DELETE /user : It should delete user by id", async function () {
-    const res = await chai.request(app).delete(`/api/user/${userId}`);
-    expect(res.statusCode).to.equal(200);
-    expect(res.body.status).to.equal("success");
-    expect(res.body.message).to.equal("User Deleted Successfully!");
-  });
-
-  it("DELETE /user : It should failed to delete user by id", async function () {
-    const res = await chai.request(app).delete(`/api/user/88`);
-    expect(res.statusCode).to.equal(400);
-    expect(res.body.status).to.equal("failure");
-    expect(res.body.message).to.equal("User Not Found!");
-  });
-});
-
-describe("PRODUCT API Routes", () => {
   it("GET /product : It should get all product", async function () {
     const res = await chai.request(app).get("/api/product/");
     expect(res.statusCode).to.equal(200);
@@ -188,22 +173,6 @@ describe("PRODUCT API Routes", () => {
     expect(res.body.message).to.equal("Internal Server Error");
   });
 
-  it("DELETE /product : It should delete product by id", async function () {
-    const res = await chai.request(app).delete(`/api/product/${productId}`);
-    expect(res.statusCode).to.equal(200);
-    expect(res.body.status).to.equal("success");
-    expect(res.body.message).to.equal("Product Deleted Successfully!");
-  });
-
-  it("DELETE /product : It should failed to delete product by id", async function () {
-    const res = await chai.request(app).delete(`/api/product/88`);
-    expect(res.statusCode).to.equal(400);
-    expect(res.body.status).to.equal("failure");
-    expect(res.body.message).to.equal("Product Not Found!");
-  });
-});
-
-describe("ORDER API Routes", () => {
   it("GET /order : It should get all order", async function () {
     const res = await chai.request(app).get("/api/order/");
     expect(res.statusCode).to.equal(200);
@@ -269,6 +238,34 @@ describe("ORDER API Routes", () => {
     expect(res.statusCode).to.equal(500);
     expect(res.body.status).to.equal("failure");
     expect(res.body.message).to.equal("Internal Server Error");
+  });
+
+  it("DELETE /user : It should delete user by id", async function () {
+    const res = await chai.request(app).delete(`/api/user/${userId}`);
+    expect(res.statusCode).to.equal(200);
+    expect(res.body.status).to.equal("success");
+    expect(res.body.message).to.equal("User Deleted Successfully!");
+  });
+
+  it("DELETE /user : It should failed to delete user by id", async function () {
+    const res = await chai.request(app).delete(`/api/user/88`);
+    expect(res.statusCode).to.equal(400);
+    expect(res.body.status).to.equal("failure");
+    expect(res.body.message).to.equal("User Not Found!");
+  });
+
+  it("DELETE /product : It should delete product by id", async function () {
+    const res = await chai.request(app).delete(`/api/product/${productId}`);
+    expect(res.statusCode).to.equal(200);
+    expect(res.body.status).to.equal("success");
+    expect(res.body.message).to.equal("Product Deleted Successfully!");
+  });
+
+  it("DELETE /product : It should failed to delete product by id", async function () {
+    const res = await chai.request(app).delete(`/api/product/88`);
+    expect(res.statusCode).to.equal(400);
+    expect(res.body.status).to.equal("failure");
+    expect(res.body.message).to.equal("Product Not Found!");
   });
 
   it("DELETE /order : It should delete order by id", async function () {

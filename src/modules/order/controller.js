@@ -49,6 +49,7 @@ const getOrder = async (req, res) => {
     });
     return res.status(HTTP_CODES.SUCCESS).send(resData);
   } catch (error) {
+    console.log(error);
     message = "Internal Server Error";
     const resData = customResponse({
       code: HTTP_CODES.INTERNAL_SERVER_ERROR,
@@ -100,6 +101,7 @@ const updateOrder = async (req, res) => {
     });
     return res.status(HTTP_CODES.SUCCESS).send(resData);
   } catch (error) {
+    console.log(error);
     message = "Internal Server Error";
     const resData = customResponse({
       code: HTTP_CODES.INTERNAL_SERVER_ERROR,
@@ -133,6 +135,7 @@ const deleteOrder = async (req, res) => {
     });
     return res.status(HTTP_CODES.SUCCESS).send(resData);
   } catch (error) {
+    console.log(error);
     message = "Internal Server Error";
     const resData = customResponse({
       code: HTTP_CODES.INTERNAL_SERVER_ERROR,
@@ -180,6 +183,7 @@ const createOrder = async (req, res) => {
     });
     return res.status(HTTP_CODES.SUCCESS).send(resData);
   } catch (error) {
+    console.log(error);
     message = "Internal Server Error";
     const resData = customResponse({
       code: HTTP_CODES.INTERNAL_SERVER_ERROR,
