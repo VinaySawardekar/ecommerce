@@ -13,7 +13,6 @@ chai.use(chaiHttp);
 describe("E-COMMERCE API Routes", () => {
   before(() => {
     setupDB();
-    initial();
   });
   it("GET /user : It should get all users", async function () {
     const res = await chai.request(app).get("/api/user/");
