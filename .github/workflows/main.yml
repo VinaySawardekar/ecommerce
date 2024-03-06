@@ -61,7 +61,7 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         with:
           organization: vinaysawardekar
-          projectKey: vinaysawardekar
+          projectKey: VinaySawardekar_ecommerce
         env:
           GITHUB_TOKEN: ${{ secrets.G_KEY}}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
