@@ -130,7 +130,6 @@ const deleteProduct = async (req, res) => {
     });
     return res.status(HTTP_CODES.SUCCESS).send(resData);
   } catch (error) {
-    console.log(error);
     message = "Internal Server Error";
     const resData = customResponse({
       code: HTTP_CODES.INTERNAL_SERVER_ERROR,
