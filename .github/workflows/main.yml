@@ -5,49 +5,49 @@ on:
     branches: [main]
 
 jobs:
-  # lint:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-  #     - name: Use Node.js 16
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
-  #     - name: Install linter (e.g., ESLint)
-  #       run: npm install eslint # Replace with your linter and install command
+      - name: Install linter (e.g., ESLint)
+        run: npm install eslint # Replace with your linter and install command
 
-  #     - name: Run linting
-  #       run: npm run lint
+      - name: Run linting
+        run: npm run lint
 
-  # test:
-  #   runs-on: ubuntu-latest
-  #   services:
-  #     mysql:
-  #       image: mysql:8.0
-  #       env:
-  #         MYSQL_DATABASE: ecommerce
-  #         MYSQL_ROOT_PASSWORD: root
-  #       ports:
-  #         # Opens port 3306 on service container and host
-  #         # https://docs.github.com/en/actions/using-containerized-services/about-service-containers
-  #         - 3306:3306
-  #         # Before continuing, verify the mysql container is reachable from the ubuntu host
-  #       options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-  #   steps:
-  #     - uses: actions/checkout@main
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: ecommerce
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          # Opens port 3306 on service container and host
+          # https://docs.github.com/en/actions/using-containerized-services/about-service-containers
+          - 3306:3306
+          # Before continuing, verify the mysql container is reachable from the ubuntu host
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@main
 
-  #     - name: Use Node.js 16
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
-  #     - name: Install dependencies
-  #       run: npm install
+      - name: Install dependencies
+        run: npm install
 
-  #     - name: Run tests
-  #       run: npm test # Replace with your test command
+      - name: Run tests
+        run: npm test # Replace with your test command
 
   sonarcloud:
     name: SonarCloud
