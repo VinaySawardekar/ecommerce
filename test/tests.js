@@ -2,6 +2,7 @@ const { setupDB } = require("./testConfig");
 const app = require("../src/app");
 const chai = require("chai");
 let chaiHttp = require("chai-http");
+const { initial } = require("../src/utility/helper");
 let expect = chai.expect;
 let userId = null,
   productId = null,
@@ -12,6 +13,7 @@ chai.use(chaiHttp);
 describe("E-COMMERCE API Routes", () => {
   before(() => {
     setupDB();
+    initial();
   });
   it("GET /user : It should get all users", async function () {
     const res = await chai.request(app).get("/api/user/");
