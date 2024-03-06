@@ -4,7 +4,7 @@
   "description": "Ecommerce Web Application",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec --timeout 50000 --exit",
+    "test": "nyc mocha --reporter spec --timeout 50000 --exit",
     "start": "npm run swagger-autogen && nodemon src/app.js",
     "swagger-autogen": "node swagger.js",
     "lint": "eslint ."
@@ -24,6 +24,7 @@
     "chai": "^4.3.7",
     "chai-http": "^4.3.0",
     "eslint": "^8.57.0",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0"
   }
 }

@@ -18,7 +18,6 @@ chai.use(chaiHttp);
 describe("E-COMMERCE API Routes", () => {
   it("GET /user : It should get all users", async function () {
     const res = await chai.request(app).get("/api/user/");
-    console.log(res.body);
     expect(res.statusCode).to.equal(200);
     expect(res.body.status).to.equal("success");
     expect(res.body.message).to.equal("User Details fetched Successfully!");
