@@ -19,7 +19,7 @@ module.exports = {
       throw error; // Re-throw the error for test failure
     } finally {
       // Optionally, close the connection after tests are complete
-      await connection.end();
+      // await connection.end();
     }
   },
 };
