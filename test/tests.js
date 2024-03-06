@@ -203,85 +203,91 @@ describe("PRODUCT API Routes", () => {
   });
 });
 
-describe("ORDER API Routes", () => {
-  it("GET /order : It should get all order", async function () {
-    const res = await chai.request(app).get("/api/order/");
-    expect(res.statusCode).to.equal(200);
-    expect(res.body.status).to.equal("success");
-    expect(res.body.message).to.equal("Order Details fetched Successfully!");
-  });
-
-  it("GET /order : It should get error", async function () {
-    const res = await chai.request(app).get("/api/orders/");
-    expect(res.statusCode).to.equal(404);
-    expect(res.notFound).to.equal(true);
-  });
-
-  it("POST /order : It should create new order", async function () {
-    const res = await chai.request(app).post("/api/order/").send({
-      user_id: 1,
-      product_id: 1,
-      order_quantity: 50,
-      total_price: 5000,
+describe(
+  "ORDER API Routes",
+  () => {
+    it("GET /order : It should get all order", async function () {
+      const res = await chai.request(app).get("/api/order/");
+      expect(res.statusCode).to.equal(200);
+      expect(res.body.status).to.equal("success");
+      expect(res.body.message).to.equal("Order Details fetched Successfully!");
     });
-    orderId = res.body.data[0].id;
-    expect(res.statusCode).to.equal(200);
-    expect(res.body.status).to.equal("success");
-    expect(res.body.message).to.equal("Order Created Successfully!");
-  });
 
-  it("POST /order : It should give error for new order (Missing description)", async function () {
-    const res = await chai.request(app).post("/api/order/").send({
-      user_id: 1,
-      order_quantity: 50,
-      total_price: 5000,
+    it("GET /order : It should get error", async function () {
+      const res = await chai.request(app).get("/api/orders/");
+      expect(res.statusCode).to.equal(404);
+      expect(res.notFound).to.equal(true);
     });
-    expect(res.statusCode).to.equal(500);
-    expect(res.body.status).to.equal("failure");
-    expect(res.body.message).to.equal("Internal Server Error");
-  });
 
-  it("GET /order/id : It should get order by id", async function () {
-    const res = await chai.request(app).get(`/api/order/${orderId}`);
-    expect(res.statusCode).to.equal(200);
-    expect(res.body.status).to.equal("success");
-    expect(res.body.message).to.equal("Order Details fetched Successfully!");
-  });
-
-  it("GET /order/id : It should failed to get order by id", async function () {
-    const res = await chai.request(app).get(`/api/order/999`);
-    expect(res.statusCode).to.equal(400);
-    expect(res.body.status).to.equal("failure");
-    expect(res.body.message).to.equal("Order Not Found!");
-  });
-
-  it("PUT /order : It should update order by id", async function () {
-    const res = await chai.request(app).put(`/api/order/${orderId}`).send({
-      order_quantity: 50,
+    it("POST /order : It should create new order", async function () {
+      const res = await chai.request(app).post("/api/order/").send({
+        user_id: 1,
+        product_id: 1,
+        order_quantity: 50,
+        total_price: 5000,
+      });
+      orderId = res.body.data[0].id;
+      expect(res.statusCode).to.equal(200);
+      expect(res.body.status).to.equal("success");
+      expect(res.body.message).to.equal("Order Created Successfully!");
     });
-    expect(res.statusCode).to.equal(200);
-    expect(res.body.status).to.equal("success");
-    expect(res.body.message).to.equal("Order Updated Successfully!");
-  });
 
-  it("PUT /order : It should not update order by id", async function () {
-    const res = await chai.request(app).put(`/api/order/${orderId}`).send({});
-    expect(res.statusCode).to.equal(500);
-    expect(res.body.status).to.equal("failure");
-    expect(res.body.message).to.equal("Internal Server Error");
-  });
+    it("POST /order : It should give error for new order (Missing description)", async function () {
+      const res = await chai.request(app).post("/api/order/").send({
+        user_id: 1,
+        order_quantity: 50,
+        total_price: 5000,
+      });
+      expect(res.statusCode).to.equal(500);
+      expect(res.body.status).to.equal("failure");
+      expect(res.body.message).to.equal("Internal Server Error");
+    });
 
-  it("DELETE /order : It should delete order by id", async function () {
-    const res = await chai.request(app).delete(`/api/order/${orderId}`);
-    expect(res.statusCode).to.equal(200);
-    expect(res.body.status).to.equal("success");
-    expect(res.body.message).to.equal("Order Deleted Successfully!");
-  });
+    it("GET /order/id : It should get order by id", async function () {
+      const res = await chai.request(app).get(`/api/order/${orderId}`);
+      expect(res.statusCode).to.equal(200);
+      expect(res.body.status).to.equal("success");
+      expect(res.body.message).to.equal("Order Details fetched Successfully!");
+    });
 
-  it("DELETE /order : It should failed to delete order by id", async function () {
-    const res = await chai.request(app).delete(`/api/order/88`);
-    expect(res.statusCode).to.equal(400);
-    expect(res.body.status).to.equal("failure");
-    expect(res.body.message).to.equal("Order Not Found!");
-  });
-});
+    it("GET /order/id : It should failed to get order by id", async function () {
+      const res = await chai.request(app).get(`/api/order/999`);
+      expect(res.statusCode).to.equal(400);
+      expect(res.body.status).to.equal("failure");
+      expect(res.body.message).to.equal("Order Not Found!");
+    });
+
+    it("PUT /order : It should update order by id", async function () {
+      const res = await chai.request(app).put(`/api/order/${orderId}`).send({
+        order_quantity: 50,
+      });
+      expect(res.statusCode).to.equal(200);
+      expect(res.body.status).to.equal("success");
+      expect(res.body.message).to.equal("Order Updated Successfully!");
+    });
+
+    it("PUT /order : It should not update order by id", async function () {
+      const res = await chai.request(app).put(`/api/order/${orderId}`).send({});
+      expect(res.statusCode).to.equal(500);
+      expect(res.body.status).to.equal("failure");
+      expect(res.body.message).to.equal("Internal Server Error");
+    });
+
+    it("DELETE /order : It should delete order by id", async function () {
+      const res = await chai.request(app).delete(`/api/order/${orderId}`);
+      expect(res.statusCode).to.equal(200);
+      expect(res.body.status).to.equal("success");
+      expect(res.body.message).to.equal("Order Deleted Successfully!");
+    });
+
+    it("DELETE /order : It should failed to delete order by id", async function () {
+      const res = await chai.request(app).delete(`/api/order/88`);
+      expect(res.statusCode).to.equal(400);
+      expect(res.body.status).to.equal("failure");
+      expect(res.body.message).to.equal("Order Not Found!");
+    });
+  },
+  after(async () => {
+    process.exit(1);
+  })
+);

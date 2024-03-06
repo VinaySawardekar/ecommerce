@@ -2,23 +2,11 @@ name: Ecommerce CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  sonarcloud:
-    runs-on: ubuntu-latest
-    needs: [ build, test, lint ]
-    steps:
-      - uses: actions/checkout@v3
 
-      - name: Upload code coverage to SonarCloud
-        uses: sonarsource/sonarcloud-github-action@v3.4.1
-        with:
-          organization: vinaysawardekar
-          token: 11e27f1bb07582242d2be3079a06f2f3e4a76a25 
-          projectKey: vinaysawardekar
-          # (Optional) You can customize additional SonarCloud analysis parameters here
-  build:
+ lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,17 +16,16 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install linter (e.g., ESLint)
+        run: npm install eslint # Replace with your linter and install command
 
-      - name: Build the application
-        run: npm run build  # Replace with your build command
-        
+      - name: Run linting
+        run: npm run lint 
+
   test:
     runs-on: ubuntu-latest
-    needs: build
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@main
 
       - name: Use Node.js 16
         uses: actions/setup-node@v3
@@ -49,22 +36,6 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm test  # Replace with your test command
+        run: npm test # Replace with your test command
 
-  lint:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Use Node.js 16
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - name: Install linter (e.g., ESLint)
-        run: npm install eslint  # Replace with your linter and install command
-
-      - name: Run linting
-        run: npm run lint  # Replace with your linting command
 

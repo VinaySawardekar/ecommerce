@@ -1,30 +1,3 @@
-// const mysql = require("mysql2");
-
-// module.exports = {
-//   setupDB() {
-//     before(async () => {
-//       const connection = mysql.createConnection({
-//         host: "localhost",
-//         user: "root",
-//         password: "root",
-//         database: "ecommerce",
-//       });
-
-//       connection.connect(function (err) {
-//         if (err) {
-//           console.error("error connecting: " + err.stack);
-//           return;
-//         }
-//         console.log("Database Connected");
-//       });
-//     });
-
-//     after(async () => {
-//       await connection.close();
-//     });
-//   },
-// };
-
 const mysql = require("mysql2/promise");
 
 module.exports = {
