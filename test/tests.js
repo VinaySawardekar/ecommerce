@@ -7,11 +7,12 @@ let userId = null,
   productId = null,
   orderId = null;
 
-setupDB();
-
 chai.use(chaiHttp);
 
 describe("E-COMMERCE API Routes", () => {
+  before(() => {
+    setupDB();
+  });
   it("GET /user : It should get all users", async function () {
     const res = await chai.request(app).get("/api/user/");
     console.log(res.body);
