@@ -49,3 +49,18 @@ jobs:
       - name: Run tests
         run: npm test # Replace with your test command
 
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: SonarCloud scan
+        uses: sonarsource/sonarcloud-github-action@v3.4.1
+        with:
+          organization: vinaysawardekar
+          projectKey: vinaysawardekar
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
