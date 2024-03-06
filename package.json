@@ -4,7 +4,7 @@
   "description": "Ecommerce Web Application",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec --timeout 50000",
+    "test": "mocha --reporter spec --timeout 50000 --exit",
     "start": "npm run swagger-autogen && nodemon src/app.js",
     "swagger-autogen": "node swagger.js",
     "lint": "eslint ."

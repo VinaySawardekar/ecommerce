@@ -1,13 +1,14 @@
 const mysql = require("mysql2/promise");
+const config = require("../src/config/config");
 
 module.exports = {
   setupDB: async () => {
     try {
       await mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "root",
-        database: "ecommerce",
+        host: config.DB_HOST,
+        user: config.DB_USER,
+        password: config.DB_PASSWORD,
+        database: config.DATABASE,
       });
 
       console.log("Successfully connected to MySQL database");

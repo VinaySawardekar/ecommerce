@@ -1,12 +1,13 @@
 const mysql = require("mysql2");
+const config = require("../config/config");
 /**
  * DB connection
  */
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "ecommerce",
+  host: config.DB_HOST,
+  user: config.DB_USER,
+  password: config.DB_PASSWORD,
+  database: config.DATABASE,
 });
 
 connection.connect(function (err) {
