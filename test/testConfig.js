@@ -3,7 +3,7 @@ const mysql = require("mysql2/promise");
 module.exports = {
   setupDB: async () => {
     try {
-      const connection = await mysql.createConnection({
+      await mysql.createConnection({
         host: "localhost",
         user: "root",
         password: "root",

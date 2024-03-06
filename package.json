@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --reporter spec --timeout 50000",
     "start": "npm run swagger-autogen && nodemon src/app.js",
-    "swagger-autogen": "node swagger.js"
+    "swagger-autogen": "node swagger.js",
+    "lint": "eslint ."
   },
   "author": "Vinay",
   "license": "ISC",
@@ -19,8 +20,10 @@
     "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
     "chai": "^4.3.7",
     "chai-http": "^4.3.0",
+    "eslint": "^8.57.0",
     "mocha": "^10.2.0"
   }
 }
