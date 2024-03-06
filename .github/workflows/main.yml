@@ -58,9 +58,10 @@ jobs:
           fetch-depth: 0
 
       - name: SonarCloud scan
-        uses: sonarsource/sonarcloud-github-action@v3.4.1
+        uses: sonarsource/sonarcloud-github-action@master
         with:
           organization: vinaysawardekar
           projectKey: vinaysawardekar
         env:
+          GITHUB_TOKEN: ${{ secrets.G_KEY}}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
