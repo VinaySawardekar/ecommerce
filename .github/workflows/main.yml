@@ -5,8 +5,7 @@ on:
     branches: [main]
 
 jobs:
-
- lint:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,7 +19,7 @@ jobs:
         run: npm install eslint # Replace with your linter and install command
 
       - name: Run linting
-        run: npm run lint 
+        run: npm run lint
 
   test:
     runs-on: ubuntu-latest
@@ -37,5 +36,4 @@ jobs:
 
       - name: Run tests
         run: npm test # Replace with your test command
-
 
